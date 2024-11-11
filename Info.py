@@ -12,7 +12,6 @@ title = []
 price = []
 Rating = []
 website_links = []
-
 for i in company:
     title.append(i.find('h3').text.strip())
     price.append(i.find_all(class_='price')[0].text.strip())
@@ -24,7 +23,6 @@ d = {'title': title, 'price': price, 'Rating': Rating, 'website': website_links}
 df = pd.DataFrame(d)
 
 st.title('Deals Information')
-
 #st.dataframe(df)
 st.markdown("""
     <style>
@@ -35,11 +33,7 @@ st.markdown("""
     }
     </style>
     """, unsafe_allow_html=True)
-
-# Display the scrollable, clickable DataFrame with custom CSS
 st.markdown('<div class="scrollable-table">' + df.to_html(escape=False) + '</div>', unsafe_allow_html=True)
-
-
 plain_links = [link.split('"')[1] for link in website_links]  
 df['website'] = plain_links  
 st.download_button(
