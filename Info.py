@@ -17,7 +17,7 @@ for i in company:
     price.append(i.find_all(class_='price')[0].text.strip())
     Rating.append(i.find_all(class_='star')[0].text.strip())
     website_link = i.find('a')['href']
-    website_links.append(f'<a href="{website_link}" target="_blank">Click Here</a>')  # HTML clickable link
+    website_links.append(f'<a href="{website_link}" target="_blank">Click Here</a>')  
 
 d = {'title': title, 'price': price, 'Rating': Rating, 'website': website_links}
 df = pd.DataFrame(d)
