@@ -5,6 +5,7 @@ import streamlit as st
 import pandas as pd
 st.image("logo.png", use_column_width=True)
 
+
 st.markdown(
     """
     <style>
@@ -59,7 +60,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-store = ["Flipkart", "Amazon", "Paytm", "Foodpanda", "Freecharge", "Paytmmall"]
+store = ["All_store","Flipkart", "Amazon", "Paytm", "Foodpanda", "Freecharge", "Paytmmall"]
 store_name = st.selectbox("Select Store", store)
 start = st.number_input('Enter start page number:', min_value=1, step=1, value=1)
 
@@ -78,18 +79,21 @@ if submit_button:
                 writer.writerow(["Title", "Image", "Price", "Discount", "Special Price", "Link", "Rating"])
 
                 for current_page in range(start, end + 1):
-                    url = f"https://dealsheaven.in/store/{store_name.lower()}?page={current_page}"
+                    if store_name=="All_store":
+                        url= f"https://dealsheaven.in/?page={current_page}"
+                    else:
+                        url = f"https://dealsheaven.in/store/{store_name.lower()}?page={current_page}"
                     response = requests.get(url)
 
                     if response.status_code != 200:
-                        st.warning(f"Failed to retrieve page {current_page}. Skipping...")
+                        st.warning(f"Failed to retrieve page {current_page}. ")
                         continue
 
                     soup = BeautifulSoup(response.text, 'html.parser')
                     all_items = soup.find_all("div", class_="product-item-detail")
 
                     if not all_items:
-                        st.warning(f"No products found on page {current_page}. Stopping scraper.")
+                        st.warning(f"No products found on page {current_page}.")
                         break
 
                     for item in all_items:
@@ -145,4 +149,3 @@ if submit_button:
 
     except ValueError:
         st.error("Please enter valid integers for the starting and ending page.")
-
