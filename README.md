@@ -1,5 +1,5 @@
-![Deal hunter 1](https://github.com/user-attachments/assets/5c0680e5-744c-48f1-9657-df5c567450fc)
-![Deal hunter 2](https://github.com/user-attachments/assets/8a5c3291-5eeb-46a6-80d3-ae56511102e2)
+![Screenshot 2024-11-17 194413](https://github.com/user-attachments/assets/fa5cb83a-9db3-493b-bce6-cc627e67b08e)
+
 
 
 # Web-scrapping
